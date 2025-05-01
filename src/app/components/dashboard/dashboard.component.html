@@ -1,31 +1,77 @@
 <div class="dashboard-container">
-  <h1>Dashboard</h1>
+  <div class="welcome-banner">
+    <div class="welcome-content">
+      <h1>Welcome back, {{ userName }}</h1>
+      <p class="date">{{ currentDate | date : "EEEE, MMMM d, y" }}</p>
+    </div>
+    <div class="quick-actions">
+      <button mat-raised-button color="primary" routerLink="/summary">
+        <mat-icon>assessment</mat-icon>
+        View Summary
+      </button>
+      <button mat-raised-button color="accent" routerLink="/report">
+        <mat-icon>description</mat-icon>
+        Generate Report
+      </button>
+    </div>
+  </div>
 
-  <div class="cards-grid">
-    <mat-card *ngFor="let card of cards" class="dashboard-card">
-      <mat-card-content>
-        <div class="card-content">
-          <div class="card-info">
-            <mat-card-title>{{ card.title }}</mat-card-title>
-            <mat-card-subtitle>{{ card.value }}</mat-card-subtitle>
+  <div class="stats-section">
+    <h2 class="section-title">Key Metrics</h2>
+
+    <div *ngIf="loading" class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Loading dashboard data...</p>
+    </div>
+
+    <div *ngIf="!loading" class="cards-grid">
+      <mat-card *ngFor="let card of cards" class="dashboard-card">
+        <mat-card-content>
+          <div class="card-content">
+            <div
+              class="card-icon-container"
+              [style.background-color]="card.color + '22'"
+            >
+              <mat-icon class="card-icon" [style.color]="card.color">{{
+                card.icon
+              }}</mat-icon>
+            </div>
+            <div class="card-info">
+              <mat-card-title>{{ card.title }}</mat-card-title>
+              <mat-card-subtitle>{{ card.value }}</mat-card-subtitle>
+              <div class="trend-indicator" matTooltip="Change since last month">
+                <mat-icon class="trend-icon">trending_up</mat-icon>
+                <span class="trend-value">{{ card.trend }}</span>
+              </div>
+            </div>
           </div>
-          <mat-icon class="card-icon">{{ card.icon }}</mat-icon>
-        </div>
-      </mat-card-content>
-    </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 
   <div class="news-section">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Latest UNCC News</mat-card-title>
-      </mat-card-header>
+    <h2 class="section-title">Latest UNCC News</h2>
+
+    <div *ngIf="newsLoading" class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Loading news...</p>
+    </div>
+
+    <mat-card *ngIf="!newsLoading">
       <mat-card-content>
         <div class="news-list">
           <div *ngFor="let news of unccNews" class="news-item">
-            <h3>{{ news.title }}</h3>
-            <p class="news-date">{{ news.date | date }}</p>
-            <p>{{ news.description }}</p>
+            <div class="news-content">
+              <div class="news-header">
+                <h3>{{ news.title }}</h3>
+                <span class="news-date">{{ news.date | date }}</span>
+              </div>
+              <p class="news-description">{{ news.description }}</p>
+            </div>
+            <mat-divider
+              *ngIf="news !== unccNews[unccNews.length - 1]"
+            ></mat-divider>
           </div>
         </div>
       </mat-card-content>

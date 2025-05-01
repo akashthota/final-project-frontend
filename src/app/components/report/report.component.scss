@@ -1,13 +1,42 @@
 .report-container {
-  padding: 20px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 
   h1 {
     margin-bottom: 24px;
     color: #333;
+    font-size: 28px;
+    font-weight: 500;
+    position: relative;
+    padding-left: 12px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 24px;
+      width: 4px;
+      background-color: #3f51b5;
+      border-radius: 4px;
+    }
   }
 
   .filter-section {
     margin-bottom: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #fafafa;
+    border-left: 4px solid #3f51b5;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      background-color: white;
+    }
 
     .filter-form {
       display: flex;
@@ -18,52 +47,216 @@
       mat-form-field {
         flex: 1;
         min-width: 200px;
+
+        ::ng-deep .mat-form-field-outline {
+          color: rgba(0, 0, 0, 0.12);
+        }
+
+        ::ng-deep .mat-form-field-label {
+          color: #000; /* Black label color for better contrast */
+        }
+
+        ::ng-deep .mat-select-value,
+        ::ng-deep .mat-input-element {
+          color: #000; /* Black text for inputs and select values */
+        }
+
+        ::ng-deep .mat-form-field-flex {
+          background-color: white;
+        }
+
+        ::ng-deep .mat-select-arrow {
+          color: #333; /* Darker arrow color */
+        }
+
+        ::ng-deep .mat-datepicker-toggle .mat-icon-button {
+          color: white; /* White calendar icon */
+        }
       }
 
       .filter-actions {
         display: flex;
         gap: 16px;
         margin-left: auto;
+
+        button {
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: translateY(-2px);
+          }
+        }
       }
     }
   }
 
+  .chart-section {
+    margin-bottom: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: white;
+
+    mat-card-header {
+      margin-bottom: 16px;
+      padding: 16px 16px 0 16px;
+
+      mat-card-title {
+        font-size: 20px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 0;
+        position: relative;
+        padding-left: 12px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 24px;
+          width: 4px;
+          background-color: #3f51b5;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    mat-card-content {
+      padding: 0 16px 16px 16px;
+    }
+  }
+
   .report-table {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #3f51b5; /* Changed background to match header color scheme */
+
+    mat-card-content {
+      padding: 0;
+    }
+
     table {
       width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
     }
 
     th.mat-header-cell {
-      font-weight: 500;
-      color: #333;
+      font-weight: 600;
+      color: white;
+      background-color: #2c3e8b; /* Darker blue for better contrast */
+      padding: 16px 12px;
+      font-size: 15px;
+
+      &:first-child {
+        border-radius: 8px 0 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 8px 0 0;
+      }
     }
 
-    td.mat-cell, th.mat-header-cell {
-      padding: 12px;
+    td.mat-cell,
+    th.mat-header-cell {
+      padding: 16px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12); /* Lighter border for dark background */
+    }
+
+    tr.mat-row {
+      transition: background-color 0.2s;
+      background-color: #3f51b5; /* Base color for rows */
+
+      &:nth-child(even) {
+        background-color: #354497; /* Slightly darker blue for alternating rows */
+      }
+
+      &:hover {
+        background-color: #4a5cc2; /* Lighter blue on hover */
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+
+    /* Amount column styling is now handled inline in HTML */
+    td.mat-column-date {
+      opacity: 0.9; /* Slightly reduced opacity for date text */
     }
 
     .status-badge {
       padding: 4px 8px;
       border-radius: 4px;
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600; /* Bolder text */
       text-transform: uppercase;
+      display: inline-block;
 
       &.completed {
-        background-color: #e8f5e9;
-        color: #2e7d32;
+        background-color: #c8e6c9;
+        color: #1b5e20; /* Darker green */
       }
 
       &.pending {
-        background-color: #fff3e0;
-        color: #ef6c00;
+        background-color: #ffe0b2;
+        color: #e65100; /* Darker orange */
       }
 
       &.failed {
-        background-color: #ffebee;
-        color: #c62828;
+        background-color: #ffcdd2;
+        color: #b71c1c; /* Darker red */
+      }
+
+      &.processing {
+        background-color: #bbdefb;
+        color: #0d47a1; /* Darker blue */
       }
     }
+  }
+}
+
+::ng-deep .mat-datepicker-toggle {
+  color: #000 !important; /* Make calendar icon white */
+}
+
+/* Style the datepicker popup */
+::ng-deep .mat-datepicker-content {
+  background-color: white;
+
+  .mat-calendar {
+    background-color: white;
+
+    .mat-calendar-body-cell-content {
+      color: black;
+    }
+
+    .mat-calendar-body-selected {
+      background-color: #3f51b5;
+      color: white;
+    }
+
+    .mat-calendar-arrow {
+      border-top-color: #3f51b5;
+    }
+
+    .mat-calendar-table-header,
+    .mat-calendar-body-label {
+      color: black;
+    }
+
+    .mat-calendar-period-button,
+    .mat-calendar-previous-button,
+    .mat-calendar-next-button {
+      color: #3f51b5;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .report-container {
+    padding: 16px;
   }
 }
 

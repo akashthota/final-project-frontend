@@ -5,22 +5,36 @@
     <mat-card-content>
       <form [formGroup]="filterForm" class="filter-form">
         <mat-form-field appearance="outline">
-          <mat-label>Start Date</mat-label>
-          <input matInput [matDatepicker]="startPicker" formControlName="startDate">
-          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-label style="color: #000">Start Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="startPicker"
+            formControlName="startDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startPicker"
+          ></mat-datepicker-toggle>
           <mat-datepicker #startPicker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>End Date</mat-label>
-          <input matInput [matDatepicker]="endPicker" formControlName="endDate">
-          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-label style="color: #000">End Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="endPicker"
+            formControlName="endDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endPicker"
+          ></mat-datepicker-toggle>
           <mat-datepicker #endPicker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Status</mat-label>
-          <mat-select formControlName="status">
+          <mat-label style="color: #000">Status</mat-label>
+          <mat-select style="color: #000" formControlName="status">
             <mat-option *ngFor="let status of statusOptions" [value]="status">
               {{ status }}
             </mat-option>
@@ -28,10 +42,20 @@
         </mat-form-field>
 
         <div class="filter-actions">
-          <button mat-raised-button color="primary" (click)="generateReport()">
+          <button
+            mat-raised-button
+            color="primary"
+            style="color: #000; background-color: #fff"
+            (click)="generateReport()"
+          >
             Generate Report
           </button>
-          <button mat-raised-button color="accent" (click)="exportReport()">
+          <button
+            mat-raised-button
+            color="accent"
+            style="color: #000; background-color: #fff"
+            (click)="exportReport()"
+          >
             Export Report
           </button>
         </div>
@@ -44,10 +68,12 @@
       <mat-card-title>Transaction Trends</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <canvas baseChart
+      <canvas
+        baseChart
         [data]="lineChartData"
         [options]="lineChartOptions"
-        [type]="'line'">
+        [type]="'line'"
+      >
       </canvas>
     </mat-card-content>
   </mat-card>
@@ -57,35 +83,46 @@
       <table mat-table [dataSource]="reportData.transactions">
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let transaction">{{ transaction.id }}</td>
+          <td mat-cell *matCellDef="let transaction" style="color: white">
+            {{ transaction.id }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef>Date</th>
-          <td mat-cell *matCellDef="let transaction">{{ transaction.date | date }}</td>
+          <td mat-cell *matCellDef="let transaction" style="color: white">
+            {{ transaction.date | date }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="customer">
           <th mat-header-cell *matHeaderCellDef>Customer</th>
-          <td mat-cell *matCellDef="let transaction">{{ transaction.customer }}</td>
+          <td mat-cell *matCellDef="let transaction" style="color: white">
+            {{ transaction.customer }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="amount">
           <th mat-header-cell *matHeaderCellDef>Amount</th>
-          <td mat-cell *matCellDef="let transaction">${{ transaction.amount }}</td>
+          <td mat-cell *matCellDef="let transaction" style="color: white">
+            ${{ transaction.amount }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
           <td mat-cell *matCellDef="let transaction">
-            <span class="status-badge" [ngClass]="transaction.status.toLowerCase()">
+            <span
+              class="status-badge"
+              [ngClass]="transaction.status.toLowerCase()"
+            >
               {{ transaction.status }}
             </span>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </mat-card-content>
   </mat-card>
