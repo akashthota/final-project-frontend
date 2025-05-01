@@ -1,0 +1,34 @@
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+
+  <div class="cards-grid">
+    <mat-card *ngFor="let card of cards" class="dashboard-card">
+      <mat-card-content>
+        <div class="card-content">
+          <div class="card-info">
+            <mat-card-title>{{ card.title }}</mat-card-title>
+            <mat-card-subtitle>{{ card.value }}</mat-card-subtitle>
+          </div>
+          <mat-icon class="card-icon">{{ card.icon }}</mat-icon>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="news-section">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Latest UNCC News</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="news-list">
+          <div *ngFor="let news of unccNews" class="news-item">
+            <h3>{{ news.title }}</h3>
+            <p class="news-date">{{ news.date | date }}</p>
+            <p>{{ news.description }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

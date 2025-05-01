@@ -1,0 +1,124 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  padding: 20px;
+  background-color: #f8f9fa;
+
+  .login-card-wrapper {
+    width: 100%;
+    max-width: 450px;
+    margin: 1rem;
+  }
+
+  .login-card {
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  mat-card-header {
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    color: white;
+    padding: 24px;
+    border-radius: 8px 8px 0 0;
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-icon {
+      font-size: 50px;
+      height: 50px;
+      width: 50px;
+      margin-bottom: 16px;
+    }
+
+    mat-card-title {
+      font-size: 26px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+      margin: 0;
+    }
+  }
+
+  mat-card-content {
+    padding: 24px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .login-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    .forgot-password {
+      color: #4285f4;
+      text-decoration: none;
+      font-size: 14px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .login-button {
+    height: 46px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+
+  mat-card-actions {
+    padding: 16px 24px;
+
+    .register-option {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      span {
+        color: #fff;
+      }
+
+      a {
+        font-weight: 500;
+      }
+    }
+  }
+}

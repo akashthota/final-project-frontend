@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span>My App</span>
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="!authService.isLoggedIn()">
+    <button mat-button routerLink="/login">Login</button>
+    <button mat-button routerLink="/register">Register</button>
+  </ng-container>
+
+  <ng-container *ngIf="authService.isLoggedIn()">
+    <button mat-button routerLink="/dashboard">Dashboard</button>
+    <button mat-button routerLink="/summary">Summary</button>
+    <button mat-button routerLink="/report">Report</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </ng-container>
+</mat-toolbar>
